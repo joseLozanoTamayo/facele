@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://facele.cl/egasa/servicios/Abonado/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Abonado" targetNamespace="http://facele.cl/egasa/servicios/Abonado/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://facele.cl/egasa/servicios/Abonado/">
+      <xsd:element name="Crear">
+        <xsd:complexType>
+          <xsd:sequence>
+          	<xsd:element name="ruc" type="xsd:string" maxOccurs="1"
+          		minOccurs="1" />
+          	<xsd:element name="razonSocial" type="xsd:string"
+          		maxOccurs="1" minOccurs="1">
+          	</xsd:element>
+                        <xsd:element name="nombreComercial" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+                        <xsd:element name="ubigeo" type="xsd:int" maxOccurs="1"
+          		minOccurs="1">
+          	</xsd:element>
+          	<xsd:element name="direccion" type="xsd:string"
+          		maxOccurs="1" minOccurs="1">
+          	</xsd:element>
+          	<xsd:element name="urbanizacion" type="xsd:string"
+          		maxOccurs="1" minOccurs="0">
+          	</xsd:element>
+          	<xsd:element name="provincia" type="xsd:string"
+          		maxOccurs="1" minOccurs="1">
+          	</xsd:element>
+          	<xsd:element name="departamento" type="xsd:string"
+          		maxOccurs="1" minOccurs="1">
+          	</xsd:element>
+          	<xsd:element name="distrito" type="xsd:string"
+          		maxOccurs="1" minOccurs="1">
+          	</xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CrearResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="respuesta" type="tns:respuesta" maxOccurs="1" minOccurs="1"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="respuesta">
+      	<xsd:sequence>
+      		<xsd:element name="estado" type="xsd:boolean" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="descripcion" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="Obtener">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="ruc" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ObtenerResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="respuesta" type="tns:respuesta"
+      				maxOccurs="1" minOccurs="1">
+      			</xsd:element>
+      			<xsd:element name="ruc" type="xsd:string"
+      				maxOccurs="1" minOccurs="0">
+      			</xsd:element>
+      			<xsd:element name="razon_social" type="xsd:string"
+      				maxOccurs="1" minOccurs="0">
+      			</xsd:element>
+                        <xsd:element name="nombre_comercial" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+                        <xsd:element name="sucursa" type="tns:sucursal"
+      				maxOccurs="1" minOccurs="0">
+      			</xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="sucursal">
+      	<xsd:sequence>
+      		<xsd:element name="codigo" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="nombre" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="ubigeo" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="direccion" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="urbanizacion" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      		<xsd:element name="distrito" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="provincia" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="departamento" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="CrearRequest">
+    <wsdl:part element="tns:Crear" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="CrearResponse">
+    <wsdl:part element="tns:CrearResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ObtenerRequest">
+  	<wsdl:part name="parameters" element="tns:Obtener"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ObtenerResponse">
+  	<wsdl:part name="parameters" element="tns:ObtenerResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Abonado">
+    <wsdl:operation name="Crear">
+      <wsdl:input message="tns:CrearRequest"/>
+      <wsdl:output message="tns:CrearResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="Obtener">
+    	<wsdl:input message="tns:ObtenerRequest"></wsdl:input>
+    	<wsdl:output message="tns:ObtenerResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AbonadoSOAP" type="tns:Abonado">
+  	<soap:binding style="document"
+  		transport="http://schemas.xmlsoap.org/soap/http" />
+  	<wsdl:operation name="Crear">
+  		<soap:operation
+  			soapAction="http://facele.cl/egasa/servicios/Abonado/Crear" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="Obtener">
+  		<soap:operation
+  			soapAction="http://facele.cl/egasa/servicios/Abonado/Obtener" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Abonado">
+    <wsdl:port binding="tns:AbonadoSOAP" name="AbonadoSOAP">
+      <soap:address location="http://www.example.org/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
