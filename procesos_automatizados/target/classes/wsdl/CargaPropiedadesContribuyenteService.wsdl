@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.1.3-hudson-390-. -->
+<wsdl:definitions
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://facele.cl/sfe/CargaPropiedadesContribuyente/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CargaPropiedadesContribuyente" targetNamespace="http://facele.cl/sfe/CargaPropiedadesContribuyente/">
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://facele.cl/sfe/CargaPropiedadesContribuyente/">
+            <xsd:element name="doCargaPropiedadesContribuyente">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="contribuyente" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                        <xsd:element name="propiedades" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="doCargaPropiedadesContribuyenteResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="estadoProcesamiento" type="xsd:int" maxOccurs="1" minOccurs="1"/>
+                        <xsd:element name="glosaProcesamiento" type="xsd:string" maxOccurs="1" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="obtener">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="rutContribuyente" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="obtenerResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="estadoProcesamiento" type="xsd:int" maxOccurs="1" minOccurs="1"/>
+                        <xsd:element name="glosaProcesamiento" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                        <xsd:element name="propiedades" type="xsd:string" maxOccurs="1" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="consultar">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="estado" type="tns:EstadoType" maxOccurs="1" minOccurs="1"></xsd:element>
+                        <xsd:element name="offset" type="xsd:int" maxOccurs="1" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="consultarResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="estadoProcesamiento" type="xsd:int" maxOccurs="1" minOccurs="1"/>
+                        <xsd:element name="glosaProcesamiento" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                        <xsd:element name="registros" type="tns:ContribuyenteType" maxOccurs="unbounded" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:simpleType name="EstadoType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="ACTIVO"/>
+                    <xsd:enumeration value="DESACTIVADO"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:complexType name="ContribuyenteType">
+                <xsd:sequence>
+                    <xsd:element name="rut" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                    <xsd:element name="razonSocial" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                    <xsd:element name="estado" type="tns:EstadoType" maxOccurs="1" minOccurs="1"/>
+                    <xsd:element name="numeroResolucon" type="xsd:int" maxOccurs="1" minOccurs="0"/>
+                    <xsd:element name="fechaResolucion" type="xsd:date" maxOccurs="1" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="doCargaPropiedadesContribuyenteRequest">
+        <wsdl:part element="tns:doCargaPropiedadesContribuyente" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="doCargaPropiedadesContribuyenteResponse">
+        <wsdl:part element="tns:doCargaPropiedadesContribuyenteResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerRequest">
+        <wsdl:part name="parameters" element="tns:obtener"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerResponse">
+        <wsdl:part name="parameters" element="tns:obtenerResponse"/>
+    </wsdl:message>
+    <wsdl:message name="consultarRequest">
+        <wsdl:part name="parameters" element="tns:consultar"/>
+    </wsdl:message>
+    <wsdl:message name="consultarResponse">
+        <wsdl:part name="parameters" element="tns:consultarResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="CargaPropiedadesContribuyente">
+        <wsdl:operation name="doCargaPropiedadesContribuyente">
+            <wsdl:input message="tns:doCargaPropiedadesContribuyenteRequest"/>
+            <wsdl:output message="tns:doCargaPropiedadesContribuyenteResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="obtener">
+            <wsdl:input message="tns:obtenerRequest"/>
+            <wsdl:output message="tns:obtenerResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="consultar">
+            <wsdl:input message="tns:consultarRequest"/>
+            <wsdl:output message="tns:consultarResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CargaPropiedadesContribuyenteSOAP" type="tns:CargaPropiedadesContribuyente">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="doCargaPropiedadesContribuyente">
+            <soap:operation soapAction="http://facele.cl/sfe/CargaPropiedadesContribuyente/doCargaPropiedadesContribuyente"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="obtener">
+            <soap:operation soapAction="http://facele.cl/sfe/CargaPropiedadesContribuyente/obtener"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="consultar">
+            <soap:operation soapAction="http://facele.cl/sfe/CargaPropiedadesContribuyente/consultar"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="CargaPropiedadesContribuyente">
+        <wsdl:port binding="tns:CargaPropiedadesContribuyenteSOAP" name="CargaPropiedadesContribuyenteService">
+            <soap:address location="http://b2b.docele.cl:80/sfe78025530/CargaPropiedadesContribuyenteService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

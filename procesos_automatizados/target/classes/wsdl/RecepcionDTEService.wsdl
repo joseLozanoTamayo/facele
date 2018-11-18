@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.1.3-hudson-390-. -->
+<wsdl:definitions
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://facele.cl/sfe/RecepcionDTE/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="RecepcionDTE" targetNamespace="http://facele.cl/sfe/RecepcionDTE/">
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://facele.cl/sfe/RecepcionDTE/">
+            <xsd:element name="UpLoadRegistroSII">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="rutReceptor" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                        <xsd:element name="contenidoCSV" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="UpLoadRegistroSIIResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="estadoProcesamiento" type="xsd:int" maxOccurs="1" minOccurs="1"/>
+                        <xsd:element name="glosaProcesamiento" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="UpLoadArchivoIntercambio">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="rutReceptor" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                        <xsd:element name="xml" type="xsd:base64Binary" maxOccurs="1" minOccurs="1"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="UpLoadArchivoIntercambioResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="estadoProcesamiento" type="xsd:int" maxOccurs="1" minOccurs="1"/>
+                        <xsd:element name="glosaProcesamiento" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ConsultaDTEPendientesRecepcion">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="rutReceptor" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+                        <xsd:element name="rutEmisor" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+                        <xsd:element name="tipoDTE" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+                        <xsd:element name="folio" type="xsd:long" maxOccurs="1" minOccurs="0"></xsd:element>
+                        <xsd:element name="periodoEmision" type="xsd:gYearMonth" maxOccurs="1" minOccurs="0"></xsd:element>
+                        <xsd:element name="offset" type="xsd:int" maxOccurs="1" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ConsultaDTEPendientesRecepcionResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="estadoProcesamiento" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+                        <xsd:element name="glosaProcesamiento" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+                        <xsd:element name="registro" type="tns:DTEPendienteType" maxOccurs="unbounded" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:complexType name="DTEPendienteType">
+                <xsd:sequence>
+                    <xsd:element name="rutEmisor" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                    <xsd:element name="razonSocialEmisor" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+                    <xsd:element name="tipoDTE" type="xsd:int" maxOccurs="1" minOccurs="1"/>
+                    <xsd:element name="folio" type="xsd:long" maxOccurs="1" minOccurs="1"/>
+                    <xsd:element name="fechaEmision" type="xsd:date" maxOccurs="1" minOccurs="1"/>
+                    <xsd:element name="montoTotal" type="xsd:integer" maxOccurs="1" minOccurs="1"/>
+                    <xsd:element name="fechaAprobacionSII" type="xsd:dateTime" maxOccurs="1" minOccurs="1"/>
+                    <xsd:element name="trackId" type="xsd:long" maxOccurs="1" minOccurs="1"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="UpLoadRegistroSIIRequest">
+        <wsdl:part element="tns:UpLoadRegistroSII" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="UpLoadRegistroSIIResponse">
+        <wsdl:part element="tns:UpLoadRegistroSIIResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="UpLoadArchivoIntercambioRequest">
+        <wsdl:part name="parameters" element="tns:UpLoadArchivoIntercambio"/>
+    </wsdl:message>
+    <wsdl:message name="UpLoadArchivoIntercambioResponse">
+        <wsdl:part name="parameters" element="tns:UpLoadArchivoIntercambioResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ConsultaDTEPendientesRecepcionRequest">
+        <wsdl:part name="parameters" element="tns:ConsultaDTEPendientesRecepcion"/>
+    </wsdl:message>
+    <wsdl:message name="ConsultaDTEPendientesRecepcionResponse">
+        <wsdl:part name="parameters" element="tns:ConsultaDTEPendientesRecepcionResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="RecepcionDTE">
+        <wsdl:operation name="UpLoadRegistroSII">
+            <wsdl:input message="tns:UpLoadRegistroSIIRequest"/>
+            <wsdl:output message="tns:UpLoadRegistroSIIResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="UpLoadArchivoIntercambio">
+            <wsdl:input message="tns:UpLoadArchivoIntercambioRequest"/>
+            <wsdl:output message="tns:UpLoadArchivoIntercambioResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="ConsultaDTEPendientesRecepcion">
+            <wsdl:input message="tns:ConsultaDTEPendientesRecepcionRequest"/>
+            <wsdl:output message="tns:ConsultaDTEPendientesRecepcionResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="RecepcionDTESOAP" type="tns:RecepcionDTE">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="UpLoadRegistroSII">
+            <soap:operation soapAction="http://facele.cl/sfe/RecepcionDTE/UpLoadRegistroSII"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="UpLoadArchivoIntercambio">
+            <soap:operation soapAction="http://facele.cl/sfe/RecepcionDTE/UpLoadArchivoIntercambio"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ConsultaDTEPendientesRecepcion">
+            <soap:operation soapAction="http://facele.cl/sfe/RecepcionDTE/ConsultaDTEPendientesRecepcion"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="RecepcionDTE">
+        <wsdl:port binding="tns:RecepcionDTESOAP" name="RecepcionDTESOAP">
+            <soap:address location="http://b2b.docele.cl:80/sfe78025530/RecepcionDTEService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

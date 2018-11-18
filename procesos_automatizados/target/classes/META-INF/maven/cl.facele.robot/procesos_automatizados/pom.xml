@@ -1,0 +1,148 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>cl.facele.robot</groupId>
+  <artifactId>procesos_automatizados</artifactId>
+  <version>0.0.11</version>
+  <packaging>jar</packaging>
+
+  <name>procesos_automatizados</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+	</properties>
+	<repositories>
+		<repository>
+			<id>facele-nexus-releases</id>
+			<name>facele nexus</name>
+			<url>http://nexus.docele.cl/nexus/content/repositories/releases</url>
+		</repository>
+		<repository>
+			<id>facele-nexus-thirdparty</id>
+			<name>facele nexus thirdparty</name>
+			<url>http://nexus.docele.cl/nexus/content/repositories/thirdparty</url>
+		</repository>
+	</repositories>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-server</artifactId>
+			<version>2.53.1</version>
+		</dependency>
+		<dependency>
+			<groupId>cl.facele</groupId>
+			<artifactId>utiles</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.directory.studio</groupId>
+			<artifactId>org.apache.logging.log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>com.toedter</groupId>
+			<artifactId>jcalendar</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>jgoodies</groupId>
+			<artifactId>forms</artifactId>
+			<version>1.0.5</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.jvnet.jax-ws-commons</groupId> -->
+<!-- 				<artifactId>jaxws-maven-plugin</artifactId> -->
+<!-- 				<version>2.2</version> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<id>dte_recibidos_sii</id> -->
+<!-- 						<goals> -->
+<!-- 							<goal>wsimport</goal>  -->
+<!-- 						</goals> -->
+<!-- 						<configuration> -->
+<!-- 							<target>2.2</target> -->
+<!-- 							<genJWS>false</genJWS> -->
+<!-- 							<implDestDir>${basedir}/src/main/java/</implDestDir> -->
+<!-- 							<wsdlDirectory>${basedir}/src/main/resources/wsdl/</wsdlDirectory> -->
+<!-- 							<wsdlFiles> -->
+<!-- 								<wsdlFile>CargaContribuyentesElectronicosService.wsdl</wsdlFile> -->
+<!-- 							</wsdlFiles> -->
+<!-- 							<bindingDirectory>${basedir}/src/main/resources</bindingDirectory> -->
+<!-- 							<bindingFiles> -->
+<!-- 								<bindingFile>asyncwrapperbinding.xml</bindingFile> -->
+<!-- 							</bindingFiles> -->
+<!-- 							<sourceDestDir>${basedir}/src/main/java/</sourceDestDir> -->
+<!-- 							<verbose>true</verbose> -->
+<!-- 						</configuration> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 			</plugin> -->
+
+			<!-- download source code in Eclipse, best practice -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>false</downloadJavadocs>
+				</configuration>
+			</plugin>
+
+			<!-- Set a compiler level -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+
+			<!-- Maven Assembly Plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.4.1</version>
+				<configuration>
+					<!-- get all project dependencies -->
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<!-- MainClass in mainfest make a executable jar -->
+					<archive>
+						<manifest>
+							<mainClass>cl.facele.robot.inicio.ProcesoInicio</mainClass>
+						</manifest>
+					</archive>
+
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<!-- bind to the packaging phase -->
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+</project>
