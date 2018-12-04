@@ -2,7 +2,6 @@ package cl.facele.robot.inicio;
 
 import org.apache.log4j.Logger;
 
-import cl.facele.robot.logica.ViewVentanaInformacion;
 import cl.facele.robot.logica.ViewAutomatizacionProceso;
 
 /**

@@ -320,7 +320,7 @@ public class DTERecibidoSIILogica {
 				throw new Exception("Error: Descarga a superado limite de tiempo descarga ");
 			}
 		}
-		Thread.sleep(1000);
+		TimeUnit.SECONDS.sleep(1);
 	}
 	
 	/**

@@ -12,8 +12,8 @@
 
   <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.7</maven.compiler.source>
-		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 	<repositories>
 		<repository>
@@ -62,34 +62,34 @@
 	</dependencies>
 	<build>
 		<plugins>
-<!-- 			<plugin> -->
-<!-- 				<groupId>org.jvnet.jax-ws-commons</groupId> -->
-<!-- 				<artifactId>jaxws-maven-plugin</artifactId> -->
-<!-- 				<version>2.2</version> -->
-<!-- 				<executions> -->
-<!-- 					<execution> -->
-<!-- 						<id>dte_recibidos_sii</id> -->
-<!-- 						<goals> -->
-<!-- 							<goal>wsimport</goal>  -->
-<!-- 						</goals> -->
-<!-- 						<configuration> -->
-<!-- 							<target>2.2</target> -->
-<!-- 							<genJWS>false</genJWS> -->
-<!-- 							<implDestDir>${basedir}/src/main/java/</implDestDir> -->
-<!-- 							<wsdlDirectory>${basedir}/src/main/resources/wsdl/</wsdlDirectory> -->
-<!-- 							<wsdlFiles> -->
-<!-- 								<wsdlFile>CargaContribuyentesElectronicosService.wsdl</wsdlFile> -->
-<!-- 							</wsdlFiles> -->
-<!-- 							<bindingDirectory>${basedir}/src/main/resources</bindingDirectory> -->
-<!-- 							<bindingFiles> -->
-<!-- 								<bindingFile>asyncwrapperbinding.xml</bindingFile> -->
-<!-- 							</bindingFiles> -->
-<!-- 							<sourceDestDir>${basedir}/src/main/java/</sourceDestDir> -->
-<!-- 							<verbose>true</verbose> -->
-<!-- 						</configuration> -->
-<!-- 					</execution> -->
-<!-- 				</executions> -->
-<!-- 			</plugin> -->
+			<plugin>
+				<groupId>org.jvnet.jax-ws-commons</groupId>
+				<artifactId>jaxws-maven-plugin</artifactId>
+				<version>2.2</version>
+				<executions>
+					<execution>
+						<id>dte_recibidos_sii</id>
+						<goals>
+							<goal>wsimport</goal> 
+						</goals>
+						<configuration>
+							<target>2.2</target>
+							<genJWS>false</genJWS>
+							<implDestDir>${basedir}/src/main/java/</implDestDir>
+							<wsdlDirectory>${basedir}/src/main/resources/wsdl/</wsdlDirectory>
+							<wsdlFiles>
+								<wsdlFile>estadoActualizacion.wsdl</wsdlFile>
+							</wsdlFiles>
+							<bindingDirectory>${basedir}/src/main/resources</bindingDirectory>
+							<bindingFiles>
+								<bindingFile>asyncwrapperbinding.xml</bindingFile>
+							</bindingFiles>
+							<sourceDestDir>${basedir}/src/main/java/</sourceDestDir>
+							<verbose>true</verbose>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 
 			<!-- download source code in Eclipse, best practice -->
 			<plugin>
@@ -108,8 +108,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.2</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 
@@ -144,5 +144,40 @@
 			</plugin>
 
 		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.jvnet.jax-ws-commons
+										</groupId>
+										<artifactId>
+											jaxws-maven-plugin
+										</artifactId>
+										<versionRange>
+											[2.2,)
+										</versionRange>
+										<goals>
+											<goal>wsimport</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 </project>

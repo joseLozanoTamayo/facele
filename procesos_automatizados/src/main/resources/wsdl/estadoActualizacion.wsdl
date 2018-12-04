@@ -1,0 +1,68 @@
+<wsdl:definitions
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://facele.cl/docele/sfe/services/ReportesCSV/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ReportesCSV"
+	targetNamespace="http://facele.cl/docele/sfe/services/ReportesCSV/">
+	<wsdl:types>
+		<xsd:schema
+			targetNamespace="http://facele.cl/docele/sfe/services/ReportesCSV/">
+			<xsd:element name="UploadCSV">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="rutAbonado" type="xsd:string"
+							maxOccurs="1" minOccurs="1" />
+						<xsd:element name="bytesCSV" type="xsd:base64Binary"
+							maxOccurs="1" minOccurs="1" />
+						<xsd:element name="inline" type="xsd:boolean"
+							maxOccurs="1" minOccurs="1" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="UploadCSVResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="estadoProcesamiento" type="xsd:int"
+							maxOccurs="1" minOccurs="1" />
+						<xsd:element name="glosaProcesamiento"
+							type="xsd:string" maxOccurs="1" minOccurs="1" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="UploadCSVRequest">
+		<wsdl:part element="tns:UploadCSV" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="UploadCSVResponse">
+		<wsdl:part element="tns:UploadCSVResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:portType name="ReportesCSV">
+		<wsdl:operation name="UploadCSV">
+			<wsdl:input message="tns:UploadCSVRequest" />
+			<wsdl:output message="tns:UploadCSVResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ReportesCSVSOAP"
+		type="tns:ReportesCSV">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="UploadCSV">
+			<soap:operation
+				soapAction="http://facele.cl/docele/sfe/services/ReportesCSV/UploadCSV" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ReportesCSV">
+		<wsdl:port binding="tns:ReportesCSVSOAP"
+			name="ReportesCSVSOAP">
+			<soap:address
+				location="http://b2b.docele.cl:80/sfe78025530/ReportesCSVService" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

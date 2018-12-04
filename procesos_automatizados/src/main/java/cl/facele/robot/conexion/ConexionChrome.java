@@ -27,6 +27,7 @@ public class ConexionChrome {
 		
 		System.out.println("Path " + path);
 		Path rutaDescarga = Constantes.HOME_DIR.resolve(path);
+
 		Utils.verificarDireccionDriver();
 		Utils.isVerificarFileDescarga(rutaDescarga.toString());
 		

@@ -21,7 +21,7 @@ public class Utils {
 	 */
 	public static void verificarDireccionDriver() throws Exception {
 		File file = null;
-		
+		System.out.println(" RUTA CHOME DRIVER : " + Constantes.DIR_DRIVER_WINDOW);
 		if(Constantes.SISTEMA_OP.toLowerCase().contains("win"))
 			file = new File(Constantes.DIR_DRIVER_WINDOW);
 		else

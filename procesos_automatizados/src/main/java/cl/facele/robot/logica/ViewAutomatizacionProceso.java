@@ -9,16 +9,19 @@ import javax.swing.JFrame;
 
 import cl.facele.robot.utilidades.Constantes;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class ViewAutomatizacionProceso.
  *
  * @author facele
  */
 public class ViewAutomatizacionProceso extends javax.swing.JFrame {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -1289736130921133713L;
 
 	/**
-	 * Creates new form VentanaPrincipal
+	 * Creates new form VentanaPrincipal.
 	 */
 	public ViewAutomatizacionProceso() {
 		initComponents();
@@ -41,6 +44,7 @@ public class ViewAutomatizacionProceso extends javax.swing.JFrame {
 		decargarRecibidosSII = new javax.swing.JButton();
 		repaldarDTESII = new javax.swing.JButton();
 		cargarContribuyente = new javax.swing.JButton();
+		actualizarEstado = new javax.swing.JButton();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,41 +76,52 @@ public class ViewAutomatizacionProceso extends javax.swing.JFrame {
 				redirectCargaContribuyente(evt);
 			}
 		});
+		
+		actualizarEstado.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        actualizarEstado.setText("Registro Venta: Actualizar Estados");
+        actualizarEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	redirectEstadoActualizacion(evt);
+            }
+        });
 
-		javax.swing.GroupLayout jPanelBackgroundLayout = new javax.swing.GroupLayout(jPanelBackground);
-		jPanelBackground.setLayout(jPanelBackgroundLayout);
-		jPanelBackgroundLayout.setHorizontalGroup(
-				jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(jPanelBackgroundLayout.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addComponent(separador)
-								.addGroup(jPanelBackgroundLayout.createSequentialGroup()
-										.addComponent(imgFacele, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-										.addComponent(labelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
-								.addComponent(decargarRecibidosSII, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(repaldarDTESII, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(cargarContribuyente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-						.addContainerGap())
-				);
-		jPanelBackgroundLayout.setVerticalGroup(
-				jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(jPanelBackgroundLayout.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-								.addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(imgFacele))
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-						.addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-						.addComponent(decargarRecibidosSII, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(repaldarDTESII, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(cargarContribuyente, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(31, Short.MAX_VALUE))
-				);
+        javax.swing.GroupLayout jPanelBackgroundLayout = new javax.swing.GroupLayout(jPanelBackground);
+        jPanelBackground.setLayout(jPanelBackgroundLayout);
+        jPanelBackgroundLayout.setHorizontalGroup(
+            jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelBackgroundLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(separador)
+                    .addGroup(jPanelBackgroundLayout.createSequentialGroup()
+                        .addComponent(imgFacele, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
+                    .addComponent(decargarRecibidosSII, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(repaldarDTESII, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(actualizarEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cargarContribuyente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanelBackgroundLayout.setVerticalGroup(
+            jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelBackgroundLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(imgFacele))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(decargarRecibidosSII, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(repaldarDTESII, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cargarContribuyente, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(actualizarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46))
+        );
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
@@ -124,7 +139,20 @@ public class ViewAutomatizacionProceso extends javax.swing.JFrame {
 
 	
 	/**
-	 * redirecciona a la ventana de carga contribuyente
+	 * Redirect estado actualizacion.
+	 *
+	 * @param evt the evt
+	 */
+	private void redirectEstadoActualizacion(java.awt.event.ActionEvent evt) {
+		this.dispose();
+		JFrame frame = new ViewActualizarEstado();
+		frame.setVisible(Boolean.TRUE);
+	}
+	
+	/**
+	 * redirecciona a la ventana de carga contribuyente.
+	 *
+	 * @param evt the evt
 	 */
 	private void redirectCargaContribuyente(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redirectCargaContribuyente
 		this.dispose();
@@ -133,6 +161,11 @@ public class ViewAutomatizacionProceso extends javax.swing.JFrame {
 
 	}//GEN-LAST:event_redirectCargaContribuyente
 
+	/**
+	 * Decargar recibidos SII action performed.
+	 *
+	 * @param evt the evt
+	 */
 	private void decargarRecibidosSIIActionPerformed(java.awt.event.ActionEvent evt) {                                                     
 		
 		this.dispose();
@@ -141,6 +174,11 @@ public class ViewAutomatizacionProceso extends javax.swing.JFrame {
 		
 	}                                                    
 
+	/**
+	 * Repaldar DTESII action performed.
+	 *
+	 * @param evt the evt
+	 */
 	private void repaldarDTESIIActionPerformed(java.awt.event.ActionEvent evt) {                                               
 
 		this.dispose();
@@ -148,13 +186,29 @@ public class ViewAutomatizacionProceso extends javax.swing.JFrame {
 		Constantes.EXECUTOR.execute(descarga);
 	}                                            
 
+	/** The actualizar estado. */
 	// Variables declaration - do not modify//GEN-BEGIN:variables
+	private javax.swing.JButton actualizarEstado;
+	
+	/** The cargar contribuyente. */
 	private javax.swing.JButton cargarContribuyente;
+	
+	/** The decargar recibidos SII. */
 	private javax.swing.JButton decargarRecibidosSII;
+	
+	/** The img facele. */
 	private javax.swing.JLabel imgFacele;
+	
+	/** The j panel background. */
 	private javax.swing.JPanel jPanelBackground;
+	
+	/** The label titulo. */
 	private javax.swing.JLabel labelTitulo;
+	
+	/** The repaldar DTESII. */
 	private javax.swing.JButton repaldarDTESII;
+	
+	/** The separador. */
 	private javax.swing.JSeparator separador;
 	// End of variables declaration//GEN-END:variables
 }

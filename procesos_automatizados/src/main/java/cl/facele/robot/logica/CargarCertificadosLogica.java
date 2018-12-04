@@ -50,7 +50,7 @@ public class CargarCertificadosLogica {
 	public void downloadContribuyente() throws Exception {
 		try {
 			ViewVentanaInformacion.setInformacion("Procede a Descargar Archivo");
-			conexion.getDriver().navigate().to(Constantes.GENERAL_CONSTANTES.getString("URL.CONSULTA.RUT"));
+			conexion.getDriver().navigate().to(Constantes.GENERAL_CONSTANTES.getString("URL.DTE.ACTUALIZACION"));
 			Thread.sleep(3000);
 			conexion.getDriver().findElement(By.partialLinkText("Descargar Listado")).click();
 			waitDownload(3);
