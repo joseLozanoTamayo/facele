@@ -41,7 +41,7 @@ public class UploadCSV {
     @XmlElement(required = true)
     protected String rutAbonado;
     @XmlElement(required = true)
-    protected byte[] bytesCSV;
+    protected String bytesCSV;
     protected boolean inline;
 
     /**
@@ -75,7 +75,7 @@ public class UploadCSV {
      *     possible object is
      *     byte[]
      */
-    public byte[] getBytesCSV() {
+    public String getBytesCSV() {
         return bytesCSV;
     }
 
@@ -86,7 +86,7 @@ public class UploadCSV {
      *     allowed object is
      *     byte[]
      */
-    public void setBytesCSV(byte[] value) {
+    public void setBytesCSV(String value) {
         this.bytesCSV = value;
     }
 

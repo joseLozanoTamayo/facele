@@ -136,7 +136,7 @@ public class ActualizacionEstadoBusiness extends RobotLogica {
 				
 				ViewVentanaInformacion.setInformacion("AMBIENTE : " + nombreAmbiente);
 				ViewVentanaInformacion.setInformacion("Conectandose : " + Constantes
-						.GENERAL_CONSTANTES.getString(nombreAmbiente+".CARGAR.PROVEEDORES"));
+						.GENERAL_CONSTANTES.getString(nombreAmbiente+".ESTADO.ACTUALIZACION"));
 				
 				ReportesCSV_Service service = new ReportesCSV_Service(
 								new URL(Constantes.GENERAL_CONSTANTES.getString(nombreAmbiente+".ESTADO.ACTUALIZACION")));
