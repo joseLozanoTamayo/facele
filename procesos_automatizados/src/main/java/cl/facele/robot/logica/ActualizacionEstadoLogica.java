@@ -1,11 +1,9 @@
 package cl.facele.robot.logica;
 
 import java.io.File;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -14,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import cl.facele.docele.sfe.services.reportescsv.ReportesCSV;
@@ -31,10 +30,12 @@ public class ActualizacionEstadoLogica {
 
 	private ConexionChrome conexion;
 	private Logger logger = Logger.getLogger(getClass());
-	private final int MAXIMO_LINEAS = 30000;
 	private ReportesCSV portReporteCSV;
 	private SimpleDateFormat sdfYear = new SimpleDateFormat("yyyy");
 	private SimpleDateFormat sdfMonth = new SimpleDateFormat("MM");
+	private final static String ANIO = "Año";
+	private final static String MES = "Mes";
+	private final static String EMPRESA = "Empresa";
 
 	/**
 	 * 
@@ -56,14 +57,98 @@ public class ActualizacionEstadoLogica {
 	 */
 	public void iniciarActualizacionEstado() throws Exception {
 		try {
-			ViewVentanaInformacion.setInformacion("Procede a Descargar Archivo");
+			ViewVentanaInformacion.setInformacion("Dirigiendo a : " + Constantes.GENERAL_CONSTANTES.getString("URL.DTE.ACTUALIZACION"));
 			conexion.getDriver().navigate().to(Constantes.GENERAL_CONSTANTES.getString("URL.DTE.ACTUALIZACION"));
-			Thread.sleep(3000);
+			TimeUnit.SECONDS.sleep(3);
 		} catch(Exception e) {
 			throw new Exception("Error, downloadContribuyente : " + e.getMessage());
 		}
 	}
+	
+	/**
+	 * 
+	 * Obtiene lista de meses
+	 * 
+	 * @return
+	 */
+	public List<String> getListaMeses() {
+		List<String> meses = new ArrayList<>();
+	    for (WebElement option : 
+	    	new Select(this.conexion.getDriver().findElement(By.id("periodoMes"))).getOptions()) {
+	        if (option.getAttribute("value") != "") 
+	        	meses.add(option.getText());
+	    }
+		return meses;
+	}
+	
+	/**
+	 * 
+	 * Obtiene lista de anios
+	 * 
+	 * @return
+	 */
+	public List<String> getListaAnios() {
+		List<String> anios = new ArrayList<>();
+	    for (WebElement option : 
+	    	new Select(this.conexion.getDriver().findElement(By.xpath("//form[@name='formContribuyente']/div[2]/select[2]"))).getOptions()) {
+	        if (option.getAttribute("value") != "") 
+	        	anios.add(option.getText());
+	    }
+		return anios;
+	}
 
+	/**
+	 * 
+	 * Obtiene lista de anios
+	 * 
+	 * @return
+	 */
+	public List<String> getListaRUT() {
+		List<String> ruts = new ArrayList<>();
+	    for (WebElement option : 
+	    	new Select(this.conexion.getDriver().findElement(By.name("rut"))).getOptions()) {
+	        if (option.getAttribute("value") != "") 
+	        	ruts.add(option.getText());
+	    }
+		return ruts;
+	}
+	
+	/**
+	 * 
+	 * @param anio
+	 */
+	public void seleccionarAnio(String anio ) {
+		if ( ANIO.equals(anio))
+			return;
+		Select selectAnio = new Select(this.conexion.getDriver()
+				.findElement(By.xpath("//form[@name='formContribuyente']/div[2]/select[2]")));
+		selectAnio.selectByValue(anio);
+	}
+
+	/**
+	 * 
+	 * @param anio
+	 */
+	public void seleccionarMes(String mes ) {
+		if ( MES.equals(mes))
+			return;
+		Select selectMes = new Select(this.conexion.getDriver().findElement(By.id("periodoMes")));
+		selectMes.selectByValue(mes);
+	}
+	
+	/**
+	 * 
+	 * @param anio
+	 */
+	public void seleccionarRUT(String rut ) {
+		
+		if ( EMPRESA.equals(rut))
+			return;
+		
+		Select selectRut = new Select(this.conexion.getDriver().findElement(By.name("rut")));
+		selectRut.selectByValue(rut);
+	}
+	
 	/**
 	 * 
 	 * @param rut
@@ -74,7 +159,7 @@ public class ActualizacionEstadoLogica {
 		String anio = sdfYear.format(estadoActualizacion.getFecha());
 		String mes = sdfMonth.format(estadoActualizacion.getFecha());
 
-		TimeUnit.SECONDS.sleep(10);
+		TimeUnit.SECONDS.sleep(5);
 		Select selectRut = new Select(this.conexion.getDriver().findElement(By.name("rut")));
 		selectRut.selectByValue(estadoActualizacion.getRut());
 		Select selectMes = new Select(this.conexion.getDriver().findElement(By.id("periodoMes")));
@@ -82,22 +167,32 @@ public class ActualizacionEstadoLogica {
 		Select selectAnio = new Select(this.conexion.getDriver()
 				.findElement(By.xpath("//form[@name='formContribuyente']/div[2]/select[2]")));
 		selectAnio.selectByValue(anio);
+		
+		iniciarDescargaFile();
+		
+	}
+
+	/**
+	 * 
+	 * Metodo que inicia la descarga del archivo.
+	 * 
+	 * @throws Exception
+	 */
+	public void iniciarDescargaFile() throws Exception {
 
 		conexion.getDriver().findElement(By.xpath("//button[contains(.,'Consultar')]") ).click();	
-
-		TimeUnit.SECONDS.sleep(10);
+		TimeUnit.SECONDS.sleep(3);
 
 		conexion.getDriver().findElement(By.xpath("//a[contains(.,'VENTA')]") ).click();
+		TimeUnit.SECONDS.sleep(3);
 
-		TimeUnit.SECONDS.sleep(10);
 		ViewVentanaInformacion.setInformacion("Procede a Descargar Archivo");
 		conexion.getDriver().findElement(By.xpath("//button[contains(.,'Descargar Detalles')]") ).click();	
 
-		TimeUnit.SECONDS.sleep(10);
 		waitDownload(Boolean.TRUE);
-		TimeUnit.SECONDS.sleep(5);
+		TimeUnit.SECONDS.sleep(2);
 	}
-
+	
 	/**
 	 * carga contribuyente al servicio web
 	 */
@@ -114,7 +209,7 @@ public class ActualizacionEstadoLogica {
 				byte[] fileArray = Files.readAllBytes(archivo);
 
 				UploadCSV parameters = new UploadCSV();
-				parameters.setInline(Boolean.FALSE);
+				parameters.setInline(Boolean.TRUE);
 				parameters.setRutAbonado(rutAbonado);
 				parameters.setBytesCSV(enc.encodeToString(fileArray));
 
@@ -198,37 +293,6 @@ public class ActualizacionEstadoLogica {
 
 				logger.info("NOMBRE ARCHIVO : " + file.getFileName());
 				listaPath.add(file);
-
-				// List<String> archivo =  Files.readAllLines(file, StandardCharsets.ISO_8859_1);
-				// String encabezado = archivo.get(0);
-				// StringBuffer buffer = new StringBuffer();
-				// int inicioSegmento = 0;
-				// int finalSegmento  = MAXIMO_LINEAS;
-				// int cantidadLineas = archivo.size();
-				// logger.info("Cantidad Registros : " + cantidadLineas);
-				// ViewVentanaInformacion.setInformacion("Cantidad Registros a Procesar : " + cantidadLineas);
-
-
-				//				for(String linea: archivo) {
-				//					buffer.append(linea).append("\n");
-				//					if(inicioSegmento == finalSegmento) {
-				//						
-				//						Path dirArchivo = rutaDescarga
-				//								.resolve(System.currentTimeMillis()+"_"+file.getFileName().toString().replaceAll(".csv", "txt")); 
-				//						Files.write( dirArchivo, buffer.toString().getBytes(), 
-				//								StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-				//						
-				//						buffer.delete(0, buffer.length());
-				//						buffer.append(encabezado).append("\n");
-				//						finalSegmento += MAXIMO_LINEAS;
-				//						
-				//						if(finalSegmento > cantidadLineas)
-				//							finalSegmento = cantidadLineas-1;
-				//						
-				//						listaPath.add(dirArchivo);
-				//					}
-				//					inicioSegmento++;
-				//				}
 			}
 		} catch(Exception e) {
 			logger.error("Error en procesarFileCsv : " + e.getMessage());

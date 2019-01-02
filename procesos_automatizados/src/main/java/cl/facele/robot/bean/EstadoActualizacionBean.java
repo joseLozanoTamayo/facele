@@ -17,6 +17,12 @@ public class EstadoActualizacionBean {
 	/** The fecha. */
 	private Date fecha;
 	
+	/** The periodoAnio */
+	private String periodoAnio;
+	
+	/** The periodoMes */
+	private String periodoMes;
+	
 	/**
 	 * Gets the lista ambiente.
 	 *
@@ -69,6 +75,22 @@ public class EstadoActualizacionBean {
 	 */
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+
+	public String getPeriodoAnio() {
+		return periodoAnio;
+	}
+
+	public void setPeriodoAnio(String periodoAnio) {
+		this.periodoAnio = periodoAnio;
+	}
+
+	public String getPeriodoMes() {
+		return periodoMes;
+	}
+
+	public void setPeriodoMes(String periodoMes) {
+		this.periodoMes = periodoMes;
 	}
 	
 

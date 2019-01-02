@@ -52,7 +52,7 @@ public class RunneableEstadoActualizacion implements Runnable{
 			actualizacionEstado = new ActualizacionEstadoBusiness();
 			actualizacionEstado.loginCertificado();
 
-			actualizacionEstado.iniciarActualizacionEstado(this.estadoActuaizacionBean);
+			actualizacionEstado.iniciarActualizacionEstadoAll(this.estadoActuaizacionBean);
 
 		} catch (Exception e) {
 			logger.error("RunneableCargaContribuyente.run : " + e.getMessage());
