@@ -146,7 +146,7 @@ public class ActualizacionEstadoBusiness extends RobotLogica {
 				}
 			}
 
-			// logica.procesarActualizacionEstado(ambientes);
+			logica.procesarActualizacionEstado(ambientes);
 			List<Path> listaArchivo = logica.procesarFileCsv();
 
 			if(ambientes.getListaAmbiente().contains("TODO"))
