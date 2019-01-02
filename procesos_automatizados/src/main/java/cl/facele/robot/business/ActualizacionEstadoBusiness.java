@@ -146,7 +146,6 @@ public class ActualizacionEstadoBusiness extends RobotLogica {
 				}
 			}
 
-			logica.procesarActualizacionEstado(ambientes);
 			List<Path> listaArchivo = logica.procesarFileCsv();
 
 			if(ambientes.getListaAmbiente().contains("TODO"))
@@ -169,7 +168,7 @@ public class ActualizacionEstadoBusiness extends RobotLogica {
 
 				ViewVentanaInformacion.setInformacion("Conexion Exitosa");
 
-				// logica.cargarContribuyente(listaArchivo, ambientes.getRut());
+				logica.cargarContribuyente(listaArchivo, ambientes.getRut());
 				ViewVentanaInformacion.setInformacion("");
 			}
 
