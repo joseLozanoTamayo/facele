@@ -199,7 +199,6 @@ public class ActualizacionEstadoLogica {
 	public void cargarContribuyente(List<Path> listaArchivo, String rutAbonado ) throws Exception {
 		ViewVentanaInformacion.setInformacion("Procede a Enviar documento a servicio Web");
 		UploadCSVResponse response = null;
-		StringBuilder buffer = new StringBuilder();
 		for( Path archivo : listaArchivo ) { 
 			try {
 
@@ -218,7 +217,6 @@ public class ActualizacionEstadoLogica {
 			} catch (Exception e) {
 				throw new Exception("Error cargarContribuyente : " + e.getMessage());
 			}
-			buffer.delete(0, buffer.length());
 			logger.info("Estado : " + response.getEstadoProcesamiento());
 			logger.info("Glosa  : " + response.getGlosaProcesamiento() );
 

@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="rutAbonado" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="bytesCSV" type="{http://www.w3.org/2001/XMLSchema}base64Binary"/>
+ *         &lt;element name="bytesCSV" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="inline" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -73,7 +73,8 @@ public class UploadCSV {
      * 
      * @return
      *     possible object is
-     *     byte[]
+     *     {@link String }
+     *     
      */
     public String getBytesCSV() {
         return bytesCSV;
@@ -84,7 +85,8 @@ public class UploadCSV {
      * 
      * @param value
      *     allowed object is
-     *     byte[]
+     *     {@link String }
+     *     
      */
     public void setBytesCSV(String value) {
         this.bytesCSV = value;
